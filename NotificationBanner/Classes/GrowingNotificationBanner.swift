@@ -230,6 +230,10 @@ public extension GrowingNotificationBanner {
         if let subtitleTextAlign = subtitleTextAlign {
             subtitleLabel!.textAlignment = subtitleTextAlign
         }
+        
+        if titleFont != nil || subtitleFont != nil {
+            updateBannerHeight()
+        }
     }
     
 }
