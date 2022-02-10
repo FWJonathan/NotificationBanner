@@ -513,7 +513,8 @@ open class BaseNotificationBanner: UIView {
     */
     @objc private dynamic func onOrientationChanged() {
         guard let window = appWindow,
-              currentDeviceOrientationIsSupportedByApp() else { return }
+              currentDeviceOrientationIsSupportedByApp(),
+              let bannerPosition = bannerPosition else { return }
         
         updateSpacerViewHeight()
 
