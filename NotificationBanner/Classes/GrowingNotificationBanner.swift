@@ -61,8 +61,8 @@ open class GrowingNotificationBanner: BaseNotificationBanner {
                     CGSize(width: boundingWidth,
                            height: .greatestFiniteMagnitude)).height ?? 0.0)
                 
-                let topOffset: CGFloat = shouldAdjustForNotchFeaturedIphone() ? 44.0 : verticalSpacing
-                let minHeight: CGFloat = shouldAdjustForNotchFeaturedIphone() ? 88.0 : 64.0
+                let topOffset: CGFloat = statusBarHeight + 10.0
+                let minHeight: CGFloat = statusBarHeight + 64.0
                 
                 var actualBannerHeight = topOffset + titleHeight + subtitleHeight + verticalSpacing
                 
