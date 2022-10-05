@@ -273,9 +273,13 @@ open class BaseNotificationBanner: UIView {
     }
 
     internal func spacerViewHeight() -> CGFloat {
-        return NotificationBannerUtilities.isNotchFeaturedIPhone()
+        if NotificationBannerUtilities.isNotchFeaturedIPhone()
             && UIApplication.shared.statusBarOrientation.isPortrait
-            && (parentViewController?.navigationController?.isNavigationBarHidden ?? true) ? 40.0 : 10.0
+            && (parentViewController?.navigationController?.isNavigationBarHidden ?? true) {
+            return statusBarHeight
+        } else {
+            return 20.0
+        }
     }
 
     private func finishBannerYOffset() -> CGFloat {
@@ -692,6 +696,15 @@ open class BaseNotificationBanner: UIView {
             && UIApplication.shared.statusBarOrientation.isPortrait
             && (self.parentViewController?.navigationController?.isNavigationBarHidden ?? true)
     }
+    
+    internal var statusBarHeight: CGFloat {
+        if #available(iOS 11.0, *) {
+            return UIApplication.shared.keyWindow?.safeAreaInsets.top ?? UIApplication.shared.statusBarFrame.size.height
+        } else {
+            return UIApplication.shared.statusBarFrame.size.height
+        }
+    }
+    
     /**
         Updates the scrolling marquee label duration
     */
